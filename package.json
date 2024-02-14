@@ -5,9 +5,9 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js",
-    "start": "node ./src/index.js",
-    "prisma:migrate": "prisma migrate dev",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "prisma:migrate": "prisma migrate dev --skip-seed",
     "prisma:format": "prisma format",
     "prisma:generate": "prisma generate"
   },

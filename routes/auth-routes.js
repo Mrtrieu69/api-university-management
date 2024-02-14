@@ -28,6 +28,14 @@ router.post("/login", async (req, res) => {
             sameSite: "none",
             secure: true,
         });
+        await prisma.user.update({
+            where: {
+                username,
+            },
+            data: {
+                access_token: tokens.accessToken,
+            },
+        });
         res.json(tokens);
     } catch (error) {
         res.status(401).json({ error: error.message });
@@ -38,7 +46,7 @@ router.get("/refresh_token", (req, res) => {
     try {
         const refreshToken = req.cookies.refresh_token;
         if (refreshToken === null) return res.sendStatus(401);
-        jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (error, user) => {
+        jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (error, user) => {
             if (error) return res.status(403).json({ error: error.message });
             let tokens = jwtTokens(user);
             res.cookie("refresh_token", tokens.refreshToken, {
@@ -46,6 +54,15 @@ router.get("/refresh_token", (req, res) => {
                 httpOnly: true,
                 sameSite: "none",
                 secure: true,
+            });
+
+            await prisma.user.update({
+                where: {
+                    username: user.username,
+                },
+                data: {
+                    access_token: tokens.accessToken,
+                },
             });
             return res.json(tokens);
         });
