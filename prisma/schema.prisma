@@ -8,14 +8,15 @@ generator client {
 }
 
 model User {
-    id          Int       @id @default(autoincrement())
-    username    String    @unique
-    password    String
-    type        String
-    student     Student?  @relation(fields: [student_id], references: [id])
-    student_id  Int?      @unique
-    employee    Employee? @relation(fields: [employee_id], references: [id])
-    employee_id Int?      @unique
+    id           Int       @id @default(autoincrement())
+    username     String    @unique
+    password     String
+    type         String
+    access_token String?
+    student      Student?  @relation(fields: [student_id], references: [id])
+    student_id   Int?      @unique
+    employee     Employee? @relation(fields: [employee_id], references: [id])
+    employee_id  Int?      @unique
 }
 
 model Student {

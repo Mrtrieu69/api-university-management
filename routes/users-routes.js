@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post("/add", async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { username, password, type } = req.body;
         const user = await prisma.user.findUnique({
             where: {
                 username,
@@ -22,7 +22,7 @@ router.post("/add", async (req, res) => {
             data: {
                 username,
                 password: hashedPassword,
-                type: "user",
+                type,
             },
         });
 
