@@ -24,6 +24,7 @@ model Student {
     lastname    String?
     surname     String?
     name        String
+    fullname    String?
     birthday    DateTime?
     sex         String?
     User        User?
@@ -56,6 +57,7 @@ model Employee {
     lastname      String?
     surname       String?
     name          String
+    fullname      String?
     salary        String?
     sex           String?
     type_employee String

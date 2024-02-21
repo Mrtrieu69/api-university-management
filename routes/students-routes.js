@@ -14,4 +14,22 @@ router.get("/list", async (req, res) => {
     }
 });
 
+router.get("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const student = await prisma.student.findMany({
+            include: {
+                programm: true,
+            },
+            where: {
+                id: parseInt(id),
+            },
+        });
+
+        res.json({ student });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 export default router;

@@ -8,6 +8,7 @@ import {
     studentsRouter,
     employeesRouter,
     classesRouter,
+    gradesRouter,
 } from "./routes/index.js";
 
 dotenv.config();
@@ -25,5 +26,6 @@ app.use("/api/user", usersRouter);
 app.use("/api/student", studentsRouter);
 app.use("/api/employee", employeesRouter);
 app.use("/api/class", classesRouter);
+app.use("/api/grade", gradesRouter);
 
 app.listen(PORT, () => console.log(`Serve is listening on ${PORT}`));

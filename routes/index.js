@@ -3,3 +3,4 @@ export { default as usersRouter } from "./users-routes.js";
 export { default as studentsRouter } from "./students-routes.js";
 export { default as employeesRouter } from "./employees-routes.js";
 export { default as classesRouter } from "./classes-routes.js";
+export { default as gradesRouter } from "./grades-routes.js";
