@@ -35,7 +35,7 @@ router.post("/add", async (req, res) => {
 router.get("/list", authenticateToken, async (req, res) => {
     try {
         const users = await prisma.user.findMany();
-        res.json(users);
+        res.json({ items: users });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

@@ -16,7 +16,7 @@ function authenticateToken(req, res, next) {
             },
         });
 
-        if (currentUser.access_token === token) {
+        if (currentUser.access_token === token && currentUser.type !== "user") {
             next();
         } else {
             return res.status(401).json({ error: "Unauthorized." });
